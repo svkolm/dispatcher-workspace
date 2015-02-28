@@ -6,9 +6,13 @@
   <meta name="description"
     content="Тестовое задание Findmeals. Простенький интерфейс диспетчера курьерской службы" />
 
+  <link href="style.css" rel="stylesheet" />
+
   <!-- Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.min.js"></script>
+
+  <script src="components/section-service.js"></script>
 
   <!-- Section -->
   <script src="section/section.js"></script>
@@ -16,11 +20,16 @@
 
   <!-- App -->
   <script src="app.js"></script>
+  <script src="tab-controller.js"></script>
 </head>
 
 <body>
-  <ul ng-init="sections = [1,2,3,4]">
-    <li ng-repeat="n in sections">
+  <ul ng-init="sections=['1','2','3','4']"
+    ng-controller="Tab as tab">
+
+    <li ng-repeat="n in sections"
+      class="{{tab.isActive(n)?'active':''}}">
+
       <a href="#/section/{{n}}">{{n}}</a>
     </li>
   </ul>

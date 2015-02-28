@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('section', [])
+    .module('section', ['sectionService'])
     .config(sectionConfig);
 
   sectionConfig.$inject = ['$routeProvider'];
