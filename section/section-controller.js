@@ -9,9 +9,6 @@
 
 
   function Section($routeParams, section) {
-    var ctrl = this;
-
-    ctrl.n = $routeParams.n;
     section.setActive($routeParams.n);
   }
 }());

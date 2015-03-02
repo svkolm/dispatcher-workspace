@@ -9,6 +9,9 @@
 
 
   function Tab(section) {
-    this.isActive = section.isActive;
+    var ctrl = this;
+
+    ctrl.sections = section.all;
+    ctrl.isActive = section.isActive;
   }
 }());

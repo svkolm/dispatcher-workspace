@@ -12,11 +12,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.min.js"></script>
 
+  <!-- Components -->
   <script src="components/section-service.js"></script>
+  <script src="components/order-service.js"></script>
+  <script src="components/order-service-config.js"></script>
 
   <!-- Section -->
   <script src="section/section.js"></script>
   <script src="section/section-controller.js"></script>
+  <script src="section/order-controller.js"></script>
 
   <!-- App -->
   <script src="app.js"></script>
@@ -24,17 +28,14 @@
 </head>
 
 <body>
-  <ul ng-init="sections=['1','2','3','4']"
-    ng-controller="Tab as tab">
+  <ul ng-controller="Tab as tab">
+    <li ng-repeat="section in tab.sections()"
+      class="{{tab.isActive(section)?'active':''}}">
 
-    <li ng-repeat="n in sections"
-      class="{{tab.isActive(n)?'active':''}}">
-
-      <a href="#/section/{{n}}">{{n}}</a>
+      <a href="#/section/{{section}}">{{section}}</a>
     </li>
   </ul>
 
   <main ng-view></main>
-
 </body>
 </html>
