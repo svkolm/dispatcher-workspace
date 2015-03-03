@@ -3,19 +3,24 @@
 
   angular
     .module('orderService', [
-      'sectionService'
+      'sectionService',
+      'localStorage'
     ])
     .factory('order', order);
 
-  order.$inject = ['section'];
+  order.$inject = ['section', 'storage'];
 
 
-  function order(section) {
-    var orderSections, s;
+  function order(section, storage) {
+    var storageKey = 'ORDER-SECTIONS',
+        orderSections,
+        s;
 
     initOrderSections();
 
     s = {
+      store: store,
+      clear: clear,
       availSections: section.inactive,
       activeSection: activeSection,
       add: add,
@@ -26,6 +31,15 @@
 
 
     function initOrderSections() {
+      if (storage.support()) {
+        orderSections = storage.object(storageKey);
+      }
+      if (!orderSections) {
+        emptyOrderSections();
+      }
+    }
+
+    function emptyOrderSections() {
       var sections, i;
 
       orderSections = {};
@@ -33,6 +47,17 @@
       for (i = 0; i < sections.length; i++) {
         orderSections[sections[i]] = [];
       }
+    }
+
+    function store() {
+      if (storage.support()) {
+        storage.store(storageKey, orderSections);
+      }
+    }
+
+    function clear() {
+      storage.remove(storageKey);
+      emptyOrderSections();
     }
 
     function activeSection() {

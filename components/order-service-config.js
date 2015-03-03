@@ -16,7 +16,7 @@
 
 
     function decorate(order) {
-      var count = 100;
+      var count = 101;
 
       order.load = load;
 
@@ -24,22 +24,26 @@
 
 
       function load() {
-        for (var i = 1; i <= 4; i++) {
-          order.add('#' + count + '.' + i);
+        for (var i = 0; i < 4; i++) {
+          order.add('#' + count + '.' + (i % 4 + 1));
           count++;
         }
+        order.store();
       }
     }
   }
 
-  function testInit(section, order) {
+  function testInit(section, order, $location) {
     var sections, i;
 
-    sections = section.all();
-    for (i = 0; i < sections.length; i++) {
-      section.setActive(sections[i]);
-      order.load();
+    if ($location.path() === '') {
+      order.clear();
+      sections = section.all();
+      for (i = 0; i < sections.length; i++) {
+        section.setActive(sections[i]);
+        order.load();
+      }
+      section.setActive(undefined);
     }
-    section.setActive(undefined);
   }
 }());

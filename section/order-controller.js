@@ -13,6 +13,12 @@
 
     ctrl.availSections = order.availSections;
     ctrl.activeSection = order.activeSection;
-    ctrl.moveTo = order.moveTo;
+    ctrl.moveTo = moveOrder;
+
+
+    function moveOrder(ord, section) {
+      order.moveTo(ord, section);
+      order.store();
+    }
   }
 }());
