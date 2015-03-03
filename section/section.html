@@ -1,9 +1,12 @@
 <div ng-controller="Order as order">
   <div ng-repeat="sectionOrder in order.activeSection()">
-    <h1>{{sectionOrder}}</h1>
+    <h3>{{sectionOrder}}</h3>
 
     <button ng-repeat="availSection in order.availSections()"
       ng-click="order.moveTo(sectionOrder, availSection)"
     >{{availSection}}</button>
   </div>
 </div>
+<button ng-controller="OrderLoading as orderLoading"
+  ng-click="orderLoading.load()"
+>Загрузить ещё</button>

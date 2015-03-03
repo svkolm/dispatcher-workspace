@@ -24,8 +24,11 @@
 
 
       function load() {
-        for (var i = 0; i < 4; i++) {
-          order.add('#' + count + '.' + (i % 4 + 1));
+        var i, n;
+
+        for (i = 0; i < 4; i++) {
+          n = '#' + Date.now() + '.' + count + '.' + (i % 4 + 1);
+          order.add(n);
           count++;
         }
         order.store();
